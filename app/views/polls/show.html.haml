@@ -24,4 +24,9 @@
           %div{class: 'right result', data: { 'answer_id': a.id }}= a.votes.to_s + ' Votes'
         %hr/
 
+  -if @poll.user == current_user
+    .large-12.columns
+      = link_to 'Edit', edit_poll_path(@poll), class: 'button'
+      = link_to 'Delete', poll_path(@poll), method: :delete, class: 'button secondary', data: {confirm: "Are you sure?"}
+
 -# TODO: add show results without voting button only if user created poll

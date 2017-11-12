@@ -4,6 +4,6 @@ class Poll < ActiveRecord::Base
 
   # TODO: Update error messages
   validates_presence_of :name
-  accepts_nested_attributes_for :answers
+  accepts_nested_attributes_for :answers, allow_destroy: true
   validates_presence_of :answers
 end

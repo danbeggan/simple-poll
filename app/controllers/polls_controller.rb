@@ -1,9 +1,9 @@
 class PollsController < ApplicationController
   before_action :find_poll, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:show]
 
   def index
-    @polls = Poll.all.order('created_at DESC')
+    @polls = Poll.where(user: current_user).order('created_at DESC')
   end
 
   def show
@@ -46,7 +46,7 @@ class PollsController < ApplicationController
   private
 
   def poll_params
-    params.require(:poll).permit(:name, :answers_attributes => [:name])
+    params.require(:poll).permit(:name, :answers_attributes => [:id, :name, :_destroy])
   end
 
   def find_poll
