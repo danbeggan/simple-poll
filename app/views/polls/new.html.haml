@@ -1,0 +1,21 @@
+=form_for @poll do |f|
+  - if @poll.errors.any?
+    .row
+      .large-12.columns
+        %h3= pluralize(@poll.errors.count, 'error') + ' prevented this poll from saving'
+        %ul
+          - @poll.errors.full_messages.each do |msg|
+            %li= msg
+  .row
+    .large-12.columns
+      .field
+        = f.label :name, "Name"
+        = f.text_field :name, :placeholder=>"Enter your question here..."
+        %br/
+  .row
+    = f.fields_for :answers do |builder|
+      = render 'answer_fields', :f => builder
+  .large-12.columns
+    %br/
+    = link_to_add_association 'Add answer', f, :answers, limit: 1, class: 'button secondary'
+    = f.submit class: 'button'

@@ -1,0 +1,8 @@
+.row
+  - @polls.each do |p|
+    .large-12.columns
+      %h3.left
+        = link_to p.name, poll_path(p)
+      .right
+        = p.created_at.strftime("%d %b %Y")
+      %hr/

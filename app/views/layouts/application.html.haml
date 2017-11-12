@@ -1,0 +1,46 @@
+!!! 5
+%html{ :lang => "en"}
+  %head
+    %meta{ :charset => "utf-8" }
+
+    %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
+
+    %title= content_for?(:title) ? yield(:title) : "Simple Poll"
+
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "vendor/modernizr"
+    = javascript_include_tag "application"
+    = csrf_meta_tag
+
+  %body
+
+    %header
+      .row
+        .large-12.columns
+          %h1
+            %a{:href => root_path} Simple Poll
+      .row
+        .small-8.columns
+          %a{:href => root_path} Home
+          - if user_signed_in?
+            |
+            %a{:href => polls_path} My polls
+            |
+            %a{:href => new_poll_path} New poll
+        .small-4.columns
+          .right
+            - if user_signed_in?
+              = link_to "Sign Out", destroy_user_session_path, method: :delete
+            - else
+              = link_to "Sign In", user_session_path
+    %hr/
+
+    .row
+      .large-12.columns
+        - flash.each do |name, msg|
+          - if msg.is_a?(String)
+            %div{:class => "alert-box round #{name.to_s == 'notice' ? 'success' : 'alert'}", "data-alert" => ""}
+              = content_tag :div, msg
+              %a.close{:href => "#"} &#215;
+
+    = yield

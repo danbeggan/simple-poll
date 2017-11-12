@@ -1,0 +1,27 @@
+.row
+  .large-12.columns
+    %h2.left
+      = @poll.name
+    .right
+      = @poll.created_at.strftime("%d %b %Y")
+    %hr/
+
+  - if !user_already_voted?( @poll, request.remote_ip )
+    .large-12.columns.answers
+      - @poll.answers.each do |a|
+        .vote-container
+          %h4
+            = a.name
+            %a{:href => "#", class: 'button right vote', data: { 'poll_id': @poll.id, 'answer_id': a.id }} Vote
+          %hr/
+
+  -# If user already voted or owns the poll then show results, auto update
+  .large-12.columns.results
+    - @poll.answers.each do |a|
+      .vote-container
+        %h4
+          = a.name
+          %div{class: 'right result', data: { 'answer_id': a.id }}= a.votes.to_s + ' Votes'
+        %hr/
+
+-# TODO: add show results without voting button only if user created poll
