@@ -1,13 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe Poll do
-  describe '#name' do
-    it 'validates presence of name' do
-      # poll = Poll.new
-      # poll.save.errors[:name].should include("can't be blank")
+RSpec.describe Poll, type: :model do
 
-      # poll.name = 'Whats your favourite color?'
-      # poll.errors[:answer].should include("can't be blank")
-    end
+  it "has requires at least one answer" do
+    poll = build :poll
+    expect(poll).to be_invalid
   end
+
+
+  it "has requires at least one answer" do
+    poll = build :poll, :with_answer
+    expect(poll).to be_valid
+  end
+
 end

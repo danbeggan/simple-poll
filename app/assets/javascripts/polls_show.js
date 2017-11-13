@@ -25,17 +25,20 @@ $(document).on('turbolinks:load', function(){
   (function worker() {
     var poll_id = $('.poll_name').data('poll-id');
 
-    $.ajax({
-      url: '/polls/'+poll_id,
-      dataType: 'json',
-      success: function(data) {
-        updateResults(data);
-      },
-      complete: function() {
-        // Schedule the next request when the current one's complete
-        setTimeout(worker, 5000);
-      }
-    });
+    // Check if still on polls show page
+    if ($(".polls.show").length > 0) {
+      $.ajax({
+        url: '/polls/'+poll_id,
+        dataType: 'json',
+        success: function(data) {
+          updateResults(data);
+        },
+        complete: function() {
+          // Schedule the next request when the current one's complete
+          setTimeout(worker, 5000);
+        }
+      });
+    }
   })();
 
 });
@@ -51,7 +54,7 @@ function updateResults(data) {
   }
 }
 
-// // Builder for creating a results div
+// // Builder for creating a results div, didnt want to delete incase used
 //
 // for (var i in data.answers) {
 //   $('.results').append(
