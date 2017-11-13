@@ -10,6 +10,8 @@ class AnswersController < ApplicationController
       session['voted_in_poll_' + poll.id.to_s] = true
     end
 
+    # TODO: add some kind of error message to json if vote isnt cast
+
     render json: poll.to_json(include: { answers: { methods: :votes } })
   end
 end

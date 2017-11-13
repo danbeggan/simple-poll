@@ -10,9 +10,11 @@
     = stylesheet_link_tag "application"
     = javascript_include_tag "vendor/modernizr"
     = javascript_include_tag "application"
+    -# TODO: visualize results.. chartjs? https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js
     = csrf_meta_tag
 
-  %body
+  -# Assign class to body to be able to run javascript on certain pages only
+  %body{class: "#{controller_name} #{action_name}" }
 
     %header
       .row

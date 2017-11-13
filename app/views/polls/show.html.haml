@@ -1,6 +1,6 @@
 .row
   .large-12.columns
-    %h2.left
+    %h2{class: 'left poll_name',  data: { 'poll_id': @poll.id}}
       = @poll.name
     .right
       = @poll.created_at.strftime("%d %b %Y")

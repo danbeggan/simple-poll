@@ -7,6 +7,10 @@ class PollsController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html
+      format.json { render json: @poll.to_json(include: { answers: { methods: :votes } }) }
+    end
   end
 
   def new
