@@ -24,6 +24,9 @@
           %div{class: 'right result', data: { 'answer_id': a.id }}= a.votes.to_s + ' Votes'
         %hr/
 
+  .large-12.columns
+    %canvas#myChart{:height => "400", :width => "400"}
+
   -if @poll.user == current_user
     .large-12.columns
       = link_to 'Edit', edit_poll_path(@poll), class: 'button'
