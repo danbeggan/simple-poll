@@ -15,8 +15,8 @@
             %a{:href => "#", class: 'button right vote', data: { 'poll_id': @poll.id, 'answer_id': a.id }} Vote
           %hr/
 
-  -# If user already voted or owns the poll then show results, auto update
-  .large-12.columns.results
+
+  %div{class: ['large-12', 'columns', 'results', ('hide' if !user_already_voted?( @poll, request.remote_ip ))] }
     - @poll.answers.each do |a|
       .vote-container
         %h4
@@ -24,12 +24,9 @@
           %div{class: 'right result', data: { 'answer_id': a.id }}= a.votes.to_s + ' Votes'
         %hr/
 
-  .large-12.columns
-    %canvas#myChart{:height => "400", :width => "400"}
-
   -if @poll.user == current_user
     .large-12.columns
       = link_to 'Edit', edit_poll_path(@poll), class: 'button'
       = link_to 'Delete', poll_path(@poll), method: :delete, class: 'button secondary', data: {confirm: "Are you sure?"}
-
--# TODO: add show results without voting button only if user created poll
+      - if !user_already_voted?( @poll, request.remote_ip )
+        %a{:href => "#", class: 'button secondary',  id: 'show-results'} Show Results

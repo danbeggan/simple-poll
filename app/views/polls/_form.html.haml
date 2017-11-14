@@ -15,7 +15,7 @@
   .row
     = f.fields_for :answers do |builder|
       = render 'answer_fields', :f => builder
-  .large-12.columns
     %br/
-    = link_to_add_association 'Add answer', f, :answers, limit: 1, class: 'button secondary'
-    = f.submit class: 'button'
+    .large-12.columns
+      = link_to_add_association 'Add answer', f, :answers, limit: 1, class: 'button secondary'
+      = f.submit class: 'button'

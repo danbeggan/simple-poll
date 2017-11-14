@@ -3,6 +3,12 @@ $(document).on('turbolinks:load', function(){
     return;
   }
 
+  $( 'a#show-results').click(function() {
+    event.preventDefault();
+    $('.results').show();
+    $(this).hide();
+  });
+
   $( 'a.vote' ).click(function() {
     event.preventDefault();
     var poll_id = $(this).data('poll-id');

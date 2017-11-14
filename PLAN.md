@@ -37,3 +37,7 @@ VoteRecord
 Poll Controller: Session cookie checks whether user has voted in current session
 
 ## Stage 4
+
+Poll controller: render json in polls#show if request is json
+jQuery in polls show to update polls if new data
+Tidy everything up

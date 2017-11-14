@@ -16,7 +16,6 @@
 //= require cocoon
 //= require turbolinks
 //= require polls_show
-//= require polls_chart
 //= require polls_form
 
 $(document).on('turbolinks:load', function(){

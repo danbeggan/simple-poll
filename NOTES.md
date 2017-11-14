@@ -18,14 +18,14 @@ Session check - store Poll id in cookie
 IP check -
 
 
-Poll - Question - Vote IP1
+Poll - Answer - Vote IP1
                   Vote IP2
                   Vote IP3
-       Question - Vote IP1
+       Answer - Vote IP1
 
 
-Poll - Question - Vote IP1
-       Question - Vote IP3
+Poll - Answer - Vote IP1
+       Answer - Vote IP3
 
 ---- DB ----
 
@@ -41,7 +41,4 @@ Answer - Title
        - [voterecords]
 
 VoteRecord - Answer id
-           - Voter id
-
-Voter - IP
-      - id
+           - IP

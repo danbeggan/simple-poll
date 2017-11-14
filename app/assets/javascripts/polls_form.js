@@ -1,7 +1,7 @@
 $(document).on('turbolinks:load', function(){
-  if ($(".polls.new").length < 1 && $(".polls.edit").length < 1) {
-    return;
-  }
+  // if ($(".polls.new").length < 1 && $(".polls.edit").length < 1) {
+  //   return;
+  // }
 
   if ($('div.answer-field').length < 2) {
     $('a.remove_fields').addClass('disabled');
@@ -15,7 +15,7 @@ $(document).on('turbolinks:load', function(){
     }
   });
 
-  $( "a.add_fields" ).click(function() {
+  $( 'body' ).on('click', 'a.add_fields', function() {
     if ($('div.answer-field').length >= 1) {
       $('a.remove_fields').removeClass('disabled');
       $('a.remove_fields').unbind('click', false);
